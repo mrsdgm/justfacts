@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commonplace — Verified Facts &amp; Deep Quotes</title>
+  <meta name="description" content="A curated, minimalist sanctuary for verified facts, timeless insights, and deep quotes—moderated for quality and clarity." />
+
+  <!-- Open Graph / Social SEO -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Commonplace — Verified Facts &amp; Deep Quotes" />
+  <meta property="og:description" content="Explore verified facts and deep quotes, or submit your own for curation." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Commonplace — Verified Facts &amp; Deep Quotes" />
+  <meta name="twitter:description" content="Explore verified facts and deep quotes, or submit your own for curation." />
+
+  <!-- Google Fonts: Instrument Serif + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Prevent flash of unstyled theme -->
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('commonplace_theme');
+        if (savedTheme === 'light' || savedTheme === 'dark' || savedTheme === 'sepia') {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand" aria-label="Commonplace Home">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <div>
+          <span class="brand-title">Commonplace</span>
+          <span class="brand-subtitle">Verified Facts &amp; Deep Quotes</span>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <!-- 3-Theme Switcher -->
+        <div class="theme-switcher" role="group" aria-label="Color theme switcher">
+          <button type="button" class="theme-btn" data-theme-value="light" aria-label="Light theme" title="Light (#faf9f6)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <span>Light</span>
+          </button>
+          <button type="button" class="theme-btn" data-theme-value="sepia" aria-label="Sepia Paper theme" title="Sepia Paper (#f5efe6)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span>Sepia</span>
+          </button>
+          <button type="button" class="theme-btn" data-theme-value="dark" aria-label="Dark theme" title="Dark (#0f1115)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span>Dark</span>
+          </button>
+        </div>
+
+        <button type="button" id="openSubmitModalBtn" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>Submit a Fact / Quote</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <!-- Random Spotlight Hero Card -->
+    <section class="spotlight-section" aria-labelledby="spotlight-heading">
+      <div class="spotlight-card" id="spotlightCard">
+        <div class="spotlight-top">
+          <span class="spotlight-eyebrow" id="spotlight-heading">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            Daily Spotlight
+          </span>
+          <span class="category-badge" id="spotlightCategory">—</span>
+        </div>
+
+        <blockquote class="spotlight-quote" id="spotlightText">
+          Loading curated wisdom...
+        </blockquote>
+
+        <div class="spotlight-footer">
+          <cite class="spotlight-author" id="spotlightAuthor">—</cite>
+          <div class="spotlight-actions">
+            <button type="button" id="newSpotlightBtn" class="btn btn-secondary">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+              <span>Show Another Random Entry</span>
+            </button>
+            <button type="button" id="copySpotlightBtn" class="btn btn-outline copy-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search & Category Filters -->
+    <section class="controls-section" aria-label="Search and filter entries">
+      <div class="search-wrapper">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input
+          type="search"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search facts, quotes, or authors..."
+          aria-label="Search approved entries"
+        />
+      </div>
+
+      <div class="category-pills" id="categoryPills" role="tablist" aria-label="Filter by category">
+        <!-- Populated dynamically -->
+      </div>
+    </section>
+
+    <!-- Approved Entries Grid -->
+    <section class="entries-section" aria-label="Approved entries">
+      <div class="section-meta">
+        <h2 class="section-title">Curated Archive</h2>
+        <span class="entries-count" id="entriesCount">0 entries</span>
+      </div>
+
+      <div class="entries-grid" id="entriesGrid">
+        <!-- Cards rendered dynamically -->
+      </div>
+
+      <div class="empty-state hidden" id="emptyState">
+        <p>No matching facts or quotes found.</p>
+        <button type="button" id="resetFiltersBtn" class="btn btn-secondary">Clear Search &amp; Filters</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-note">All community submissions are reviewed before publication.</p>
+      <div class="footer-links">
+        <button type="button" id="openAdminModalBtn" class="admin-trigger-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Admin Moderation</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Submit Modal -->
+  <div class="modal-backdrop hidden" id="submitModal" role="dialog" aria-modal="true" aria-labelledby="submitModalTitle">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <div>
+          <h2 id="submitModalTitle" class="modal-title">Submit a Fact or Quote</h2>
+          <p class="modal-subtitle">Share verified knowledge or timeless reflections with the community.</p>
+        </div>
+        <button type="button" class="icon-close-btn" data-close-modal="submitModal" aria-label="Close submission modal">&times;</button>
+      </div>
+
+      <form id="submitForm" class="modal-body" novalidate>
+        <div id="submitFeedback" class="alert-banner hidden" role="status"></div>
+
+        <div class="form-group">
+          <label for="entryTextInput" class="form-label">Fact or Quote Text <span class="required">*</span></label>
+          <textarea
+            id="entryTextInput"
+            class="form-textarea"
+            rows="4"
+            placeholder="Enter a verified fact or meaningful quote..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="entryCategorySelect" class="form-label">Category</label>
+            <select id="entryCategorySelect" class="form-select">
+              <option value="Quotes">Quotes</option>
+              <option value="Science">Science</option>
+              <option value="History">History</option>
+              <option value="Space">Space</option>
+              <option value="General">General</option>
+              <option value="__custom__">Custom Tag...</option>
+            </select>
+          </div>
+
+          <div class="form-group hidden" id="customCategoryGroup">
+            <label for="customCategoryInput" class="form-label">Custom Tag <span class="required">*</span></label>
+            <input type="text" id="customCategoryInput" class="form-input" placeholder="e.g., Philosophy" maxlength="24" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="entryAuthorInput" class="form-label">Author / Source <span class="muted">(optional)</span></label>
+          <input type="text" id="entryAuthorInput" class="form-input" placeholder='Defaults to "Anonymous"' />
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="submitModal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit for Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Moderation Modal -->
+  <div class="modal-backdrop hidden" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+    <div class="modal-panel modal-panel-lg">
+      <div class="modal-header">
+        <div>
+          <h2 id="adminModalTitle" class="modal-title">Admin Moderation</h2>
+          <p class="modal-subtitle">Review public submissions and manage published entries.</p>
+        </div>
+        <button type="button" class="icon-close-btn" data-close-modal="adminModal" aria-label="Close admin modal">&times;</button>
+      </div>
+
+      <!-- Admin Login View -->
+      <form id="adminLoginForm" class="modal-body">
+        <div id="adminLoginError" class="alert-banner alert-error hidden" role="alert"></div>
+        <div class="form-group">
+          <label for="adminPasswordInput" class="form-label">Admin Password</label>
+          <div class="password-input-wrap">
+            <input type="password" id="adminPasswordInput" class="form-input" placeholder="Enter admin password" autocomplete="current-password" required />
+            <button type="button" id="togglePasswordBtn" class="password-toggle" aria-label="Show password">Show</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="adminModal">Close</button>
+          <button type="submit" class="btn btn-primary">Unlock Dashboard</button>
+        </div>
+      </form>
+
+      <!-- Admin Dashboard View -->
+      <div id="adminDashboardView" class="modal-body hidden">
+        <div class="admin-toolbar">
+          <div class="admin-tabs" role="tablist">
+            <button type="button" class="admin-tab active" data-admin-tab="pending" role="tab" aria-selected="true">
+              Pending Review
+              <span class="tab-badge" id="pendingCountBadge">0</span>
+            </button>
+            <button type="button" class="admin-tab" data-admin-tab="published" role="tab" aria-selected="false">
+              Published Entries
+              <span class="tab-badge tab-badge-muted" id="publishedCountBadge">0</span>
+            </button>
+          </div>
+
+          <div class="admin-toolbar-actions">
+            <button type="button" id="adminAddDirectBtn" class="btn btn-primary btn-sm">+ Add Entry Directly</button>
+            <button type="button" id="adminLogoutBtn" class="btn btn-secondary btn-sm">Lock</button>
+          </div>
+        </div>
+
+        <!-- Inline Add / Edit Form inside Admin -->
+        <form id="adminEditorForm" class="admin-editor-card hidden">
+          <div class="admin-editor-header">
+            <strong id="adminEditorTitle">Add New Entry (Auto-Approved)</strong>
+            <button type="button" id="cancelAdminEditorBtn" class="btn-link">Cancel</button>
+          </div>
+          <input type="hidden" id="adminEditId" />
+          <div class="form-group">
+            <label for="adminEditText" class="form-label">Text</label>
+            <textarea id="adminEditText" class="form-textarea" rows="3" required></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="adminEditCategory" class="form-label">Category</label>
+              <input type="text" id="adminEditCategory" class="form-input" list="categorySuggestions" required />
+              <datalist id="categorySuggestions">
+                <option value="Quotes"></option>
+                <option value="Science"></option>
+                <option value="History"></option>
+                <option value="Space"></option>
+                <option value="General"></option>
+              </datalist>
+            </div>
+            <div class="form-group">
+              <label for="adminEditAuthor" class="form-label">Author / Source</label>
+              <input type="text" id="adminEditAuthor" class="form-input" placeholder="Anonymous" />
+            </div>
+          </div>
+          <div class="admin-editor-actions">
+            <button type="submit" class="btn btn-primary btn-sm" id="adminEditorSubmitBtn">Save Entry</button>
+          </div>
+        </form>
+
+        <!-- Lists -->
+        <div id="adminPendingList" class="admin-list"></div>
+        <div id="adminPublishedList" class="admin-list hidden"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Optional environment config override for deployment:
+  <script>window.APP_CONFIG = { ADMIN_PASSWORD: "your-env-injected-password" };</script>
+  -->
+  <script src="storage.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
